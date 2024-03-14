@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: geo_loc
+    database: airflow-das # Put the project id!
+
+    tables:
+      - name: loc_fr_entiere
+      - name: complet_region

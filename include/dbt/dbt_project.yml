@@ -1,0 +1,7 @@
+name: 'geo_loc'
+
+profile: 'geo_loc'
+
+models:
+  geo_loc:
+    materialized: table
