@@ -1,49 +1,69 @@
-Overview
-========
+# Traitement des données avec Airflow, DBT et GCP sur Astro
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+Ce projet illustre l'intégration et l'orchestration de divers outils et plateformes dans le domaine de l'ingénierie des données pour fournir une solution complète de traitement et d'analyse de données. En combinant Airflow, DBT et GCP au sein d'Astro, ce projet offre une approche robuste et évolutive pour gérer les workflows de données, depuis l'acquisition et le traitement jusqu'à l'analyse et la visualisation. Voici quelques-uns des aspects clés du projet :
 
-Project Contents
-================
+- **Orchestration avec Airflow :** Utilisation d'Apache Airflow pour orchestrer et planifier les workflows de données, permettant ainsi une gestion automatisée et bien structurée des tâches de traitement de données.
 
-Your Astro project contains the following files and folders:
+- **Transformation des données avec DBT :** Emploi de DBT pour effectuer des transformations de données complexes et efficaces, garantissant que les données sont préparées et optimisées pour l'analyse.
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes two example DAGs:
-    - `example_dag_basic`: This DAG shows a simple ETL data pipeline example with three TaskFlow API tasks that run daily.
-    - `example_dag_advanced`: This advanced DAG showcases a variety of Airflow features like branching, Jinja templates, task groups and several Airflow operators.
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+- **Stockage et traitement dans le cloud avec GCP :** Utilisation des services de stockage et de calcul de Google Cloud Platform pour héberger et exécuter les processus de données, assurant une élasticité et une puissance de calcul adaptées aux besoins du projet.
 
-Deploy Your Project Locally
-===========================
+- **Déploiement sur Astro :** Le projet est déployé sur Astro, ce qui facilite l'exécution et la gestion des workflows Airflow dans un environnement cloud, offrant ainsi une scalabilité et une maintenance réduites.
 
-1. Start Airflow on your local machine by running 'astro dev start'.
+En somme, ce projet vise à démontrer comment les technologies modernes d'ingénierie des données peuvent être intégrées pour construire des pipelines de données efficaces et évolutifs, capables de soutenir des décisions basées sur des données précises et pertinentes.
 
-This command will spin up 4 Docker containers on your machine, each for a different Airflow component:
 
-- Postgres: Airflow's Metadata Database
-- Webserver: The Airflow component responsible for rendering the Airflow UI
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
-- Triggerer: The Airflow component responsible for triggering deferred tasks
+## Vue d'ensemble
+Ce dépôt contient les workflows de traitement des données pour un projet qui utilise Apache Airflow pour l'orchestration, DBT (Data Build Tool) pour la transformation des données, et Google Cloud Platform (GCP) pour les services cloud. Le projet est conçu pour fonctionner sur Astro, qui fournit un environnement basé sur le cloud pour Airflow.
 
-2. Verify that all 4 Docker containers were created by running 'docker ps'.
+## Fonctionnalités
+- **DAGs Airflow** : Graphes acycliques dirigés pour l'orchestration des pipelines de données.
+- **Modèles DBT** : Transformations basées sur SQL pour structurer et optimiser les données pour l'analytique.
+- **Intégration GCP** : Utilisation des services GCP pour le stockage des données évolutif et le traitement.
 
-Note: Running 'astro dev start' will start your project with the Airflow Webserver exposed at port 8080 and Postgres exposed at port 5432. If you already have either of those ports allocated, you can either [stop your existing Docker containers or change the port](https://docs.astronomer.io/astro/test-and-troubleshoot-locally#ports-are-not-available).
 
-3. Access the Airflow UI for your local Airflow project. To do so, go to http://localhost:8080/ and log in with 'admin' for both your Username and Password.
+## Prérequis
+- Docker
+- CLI Astro
+- Compte GCP
 
-You should also be able to access your Postgres Database at 'localhost:5432/postgres'.
+## Installation
+Pour configurer l'environnement de ce projet, suivez ces étapes :
 
-Deploy Your Project to Astronomer
-=================================
+1. Clonez le dépôt :
+    git clone <URL-du-dépôt>
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://docs.astronomer.io/cloud/deploy-code/
 
-Contact
-=======
+2. Naviguez vers le répertoire du projet :
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+
+3. Installez la CLI Astro en suivant les instructions sur [la documentation d'Astro](https://www.astronomer.io/docs/).
+
+4. Authentifiez-vous auprès de GCP et configurez les services requis (Storage, BigQuery, etc.).
+
+5. Construisez l'image Docker :
+    docker build -t <nom-de-votre-image> .
+
+
+6. Initialisez un projet Astro si cela n'a pas encore été fait :
+     astro dev init
+
+
+7. Démarrez l'environnement :
+    astro dev start
+
+
+
+## Utilisation
+Déployez les workflows dans l'environnement Astro et surveillez vos tâches de traitement des données via l'interface utilisateur Airflow.
+
+Pour exécuter les commandes DBT, utilisez :
+    dbt run
+    dbt test
+
+
+## Contribution
+Nous accueillons les contributions ! Veuillez lire `CONTRIBUTING.md` pour les détails sur comment contribuer à ce projet.
+
+## Licence
+Ce projet est sous licence [MIT License](LICENSE).
